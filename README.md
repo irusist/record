@@ -31,3 +31,8 @@ Deprecated: *couchapp generate proto && cd proto*
 ## License
 
 Apache 2.0
+=======
+record
+======
+
+a couchapp for show datas
