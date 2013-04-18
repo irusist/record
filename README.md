@@ -36,3 +36,8 @@ record
 ======
 
 a couchapp for show datas
+=======
+record
+======
+
+a couchapp for show datas
