@@ -1,7 +1,6 @@
 function(keys, values, rereduce) {
     
     if (rereduce){
-	log("values:" + toJSON(values))
 	var timeArr = [];
 	for (var i = 0; i < values.length; i ++) {
 	    if (values[i].begin) {
