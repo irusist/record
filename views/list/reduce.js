@@ -1,4 +1,23 @@
 function(keys, values, rereduce) {
+    
+    if (rereduce){
+	log("values:" + toJSON(values))
+	var timeArr = [];
+	for (var i = 0; i < values.length; i ++) {
+	    if (values[i].begin) {
+		timeArr.push(values[i].begin);
+	    }
+
+	    if (values[i].end) {
+		timeArr.push(values[i].end);
+	    }
+	} 
+
+	var ymd = "1970/01/01 ";
+	timeArr.sort(function(t1, t2){return new Date(ymd + t1).getTime() - new Date(ymd + t2).getTime()});
+	return {"begin" : timeArr.shift(), "end" : timeArr.pop()}
+    }
+
     function show(d) {
 	var dd = new Date(d);
 	return dd.getHours() + ':' + dd.getMinutes() + ':' + dd.getSeconds();
@@ -11,7 +30,6 @@ function(keys, values, rereduce) {
 
     if (values.length > 0) {
 	begin = show(values[0].created_at);
-//		begin = values[0].created_at;
 	if (values.length > 1) {
 	    end = show(values[values.length -1].created_at);
 	}
