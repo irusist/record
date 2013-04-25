@@ -11,6 +11,7 @@ function(keys, values, rereduce) {
 
     if (values.length > 0) {
 	begin = show(values[0].created_at);
+//		begin = values[0].created_at;
 	if (values.length > 1) {
 	    end = show(values[values.length -1].created_at);
 	}

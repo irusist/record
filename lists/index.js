@@ -6,6 +6,7 @@ function(head, req) {
 
     var indexPath = path.list('index','recent-posts',{descending:true, limit:10});
 
+    var username = req.query.name;
     var path_parts = req.path;
   // The provides function serves the format the client requests.
   // The first matching format is sent, so reordering functions changes 
@@ -23,11 +24,17 @@ function(head, req) {
 	    design : req.path[2],
 	    newPostPath : path.show("edit"),
 	    assets : path.asset(),
-	    posts : List.withRows(function(row) {
-		var post = row.value;
+	    records : List.withRows(function(row) {
+		var time = row.value;
 		key = row.key;
+		if (username && key.name != username) {
+		    return null;
+		}
 		return {
-		    date : post.created_at,
+		    name : key.name,
+		    date : key.date,
+		    begin : time.begin,
+		    end : time.end,
 		    link : path.list('post','post-page', {startkey : [row.id]}),
 		};
 	    }),

@@ -8,27 +8,17 @@
   </head>
   <body>
     {{>header}}
-    <div id="tagcloud"></div>
     <div id="content">
-      <h1>Recently...</h1>
-      <ul id="posts">
-        {{#posts}}
-          <li>
-            <h3><a href="{{ link }}">{{ title }}</a></h3>
-            {{#has_tags}}
-              <div class="tags">
-                {{#tags}}
-                  <a href="{{link}}">{{tag}}</a>
-                {{/tags}}
-              </div>
-            {{/has_tags}}
-	      <div id="time"> {{ date }} </div>
-            <div class="by">
-              <span class="date">{{ date }}</span> 
-              by {{author}}
-            </div>
-          </li>
-        {{/posts}}
+      <h1 align="center">打卡记录</h1>
+      <table id="records" cellspacing="0" rules="all" border="1" style="width:100%;border-collapse:collapse;" >
+	<tr>
+	  <th scope="col">erp账号</th><th scope="col">日期</th><th scope="col">上班时间</th><th scope="col">下班时间</th>
+	</tr>
+        {{#records}}
+          <tr>
+	    <td align="center">{{ name }}</td><td align="center">{{ date }}</td><td align="center">{{ begin }}</td><td align="center">{{ end }}</td>
+	  </tr>
+        {{/records}}
     </ul>
     <div class="paginate">
       <a href="{{ older }}">older posts</a>

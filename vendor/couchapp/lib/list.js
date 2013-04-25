@@ -2,7 +2,14 @@
 exports.withRows = function(fun) {
  var f = function() {
     var row = getRow();
-    return row && fun(row);
+//    return row && fun(row);
+     var loop = false;
+     var data = null;
+     if (row) {
+	 loop = true;
+	 data = fun(row);
+     }
+     return {"loop" : loop, "data" : data};
   };
   f.iterator = true;
   return f;
