@@ -5,6 +5,7 @@ function(head, req) {
     var path = require("vendor/couchapp/lib/path").init(req);
 
     var indexPath = path.list('index','recent-posts',{descending:true, limit:10});
+    var homePath = path.list('index','list',{group:true, descending:true, limit:10});
 
     var username = req.query.name;
     var path_parts = req.path;
@@ -17,7 +18,8 @@ function(head, req) {
 	var stash = {
 	    header : {
 		index : indexPath,
-		blogName : ddoc.blog.title
+		blogName : ddoc.blog.title,
+		homePath : homePath
 	    },
 	    scripts : {},
 	    db : req.path[0],
